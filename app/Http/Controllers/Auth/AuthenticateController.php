@@ -33,4 +33,12 @@ class AuthenticateController extends Controller
         ])->onlyInput('email');
         
     }
+    public function destroy(Request $request) 
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
 }
