@@ -27,7 +27,7 @@ class AuthenticateController extends Controller
         {
             $request->session()->regenerate();
 
-            return redirect()->intended();
+            return redirect()->route('home');
         }
 
         return back()->withErrors([
@@ -41,6 +41,6 @@ class AuthenticateController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('home');
     }
 }
