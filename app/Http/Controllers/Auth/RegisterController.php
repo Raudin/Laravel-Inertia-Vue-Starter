@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -28,7 +29,7 @@ class RegisterController extends Controller
 
         $user = User::create($credentials);
 
-        // send verifiication email
+        event(new Registered($user));
 
         Auth::login($user);
 
